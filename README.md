@@ -6,6 +6,16 @@ ReplyWell helps small Nairobi businesses respond to customer complaints with car
 
 Complaint text is sent to Anthropic for drafting; avoid entering payment details or other sensitive information.
 
+# Project Brief
+
+**Project:** ReplyWell — AI Customer Reply Assistant  
+**Client:** Small businesses in Nairobi, Kenya  
+**Problem:** Staff struggle to write quick, calm, and professional responses to customer complaints.  
+**Solution:** A Python Flask app that lets users paste a complaint and receive an AI-generated reply draft for review and sending.  
+**Deliverables:** Working web app, Anthropic API setup instructions, one-page user guide, and handover guidance  
+**Timeline:** 5 days: Day 1 (setup), Day 2 (UI), Day 3 (AI integration), Day 4 (testing), Day 5 (deployment)  
+**Price:** KES 25,000 one-time build + KES 2,000/month support
+
 ## What was built
 
 ReplyWell is a Flask app that validates complaint submissions and uses Anthropic to generate a concise, professional reply draft. It logs request and provider outcomes without logging complaint text, and retries transient provider failures up to three times.
