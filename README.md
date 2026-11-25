@@ -35,3 +35,15 @@ This project includes a `render.yaml` Blueprint. Connect the Git repository to R
 ## Branded version pricing
 
 I would charge **KES 25,000** as a one-time setup for a branded version for one business, including its logo and colors, tailored response tone, deployment, and handover. Ongoing AI usage would be billed separately at cost.
+
+## Mid-project client update
+
+Hello [Client name],
+
+Quick update: the core ReplyWell reply-generation feature is working correctly, including complaint validation and provider error handling. The tests pass, and I confirmed that the homepage and reply endpoint are responding correctly.
+
+Working on final polish and deployment today. On track to deliver by Friday as planned.
+
+One question: should the app be delivered under the ReplyWell name, or would you like a version branded for your business?
+
+[Your name]
