@@ -26,7 +26,21 @@ ReplyWell is a Flask app that validates complaint submissions and uses Anthropic
 2. Set `ANTHROPIC_API_KEY` in your local `.env` file. Never commit the key.
 3. Run `python Day20_exercise.py` and open `http://localhost:5000`.
 
-Run the test suite with `python -m unittest -v test_app.py`. Tests use mocked provider responses and do not call Anthropic.
+## Offline use
+
+The Flask app and its local page can start without internet once the Python dependencies are installed. Generating a reply does require internet access and a valid `ANTHROPIC_API_KEY`, because complaints are sent to Anthropic's hosted API. Without a connection, reply generation will fail. Google Fonts also loads from the internet; if unavailable, the page uses the browser's fallback fonts. The deployed Render app likewise requires network access.
+
+## Tests
+
+Run the automated test suite with:
+
+```shell
+python -m unittest -v test_app.py
+```
+
+The Flask tests cover homepage rendering; valid and invalid complaint submissions; empty, malformed, and non-JSON input; complaint size boundaries (4,000 characters and the HTTP body limit); missing API configuration; malformed or empty provider responses; successful text extraction; and retry behavior for transient network and HTTP errors. Provider calls are mocked, so the suite does not require an API key or contact Anthropic.
+
+A browser smoke check was also performed with mocked `/api/reply` responses. It exercised required-field and character-limit handling, successful generation, service and network errors, malformed API responses, and clipboard success and failure.
 
 ## Deploy to Render
 
