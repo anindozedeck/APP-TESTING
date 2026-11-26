@@ -30,7 +30,11 @@ ReplyWell is a Flask app that validates complaint submissions and uses Anthropic
 
 The Flask app and its local page can start without internet once the Python dependencies are installed. Generating a reply does require internet access and a valid `ANTHROPIC_API_KEY`, because complaints are sent to Anthropic's hosted API. Without a connection, reply generation will fail. Google Fonts also loads from the internet; if unavailable, the page uses the browser's fallback fonts. The deployed Render app likewise requires network access.
 
-## Tests
+## Copying the reply
+
+The app can copy the generated reply to the clipboard, but it does not copy it automatically after generation. Select **Copy reply** below the draft; the browser will copy the text when clipboard access is allowed. The button briefly changes to **Copied!** after a successful copy.
+
+
 
 Run the automated test suite with:
 
