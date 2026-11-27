@@ -19,15 +19,10 @@
 
 ## Bill to
 
-[Client name or business name]
+[WASAFI AIRBNB COMPANY]
 
-[Client address]
+[+254747528732]
 
-[Client phone number]
-
-[Client email address]
-
-[Client tax/VAT or PIN number, if applicable]
 
 ---
 
@@ -45,11 +40,11 @@
 
 ## Payment details
 
-[Bank or M-Pesa payment details]
+[Bank payment details]
 
-[Payment account name]
+[Paybill-542542]
 
-[Account or reference number]
+[Account Number-951850]
 
 Use invoice number **#005** as the payment reference.
 
