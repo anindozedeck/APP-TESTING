@@ -16,6 +16,7 @@ The app sends complaint text to Anthropic for drafting. Do not enter payment det
 - **Deployment template:** `render.yaml`
 - **User walkthrough:** `WALKTHROUGH.md`
 - **Client handoff message:** `DELIVERY_MESSAGE.md`
+- **Invoice template:** `INVOICE.md`
 
 ## Features
 
@@ -40,6 +41,7 @@ requirements.txt   Python dependencies
 README.md          Project and setup documentation
 WALKTHROUGH.md     One-page staff usage guide
 DELIVERY_MESSAGE.md Ready-to-send delivery handoff
+INVOICE.md         Invoice template for the one-time build
 ```
 
 ## Run locally

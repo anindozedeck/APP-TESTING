@@ -25,6 +25,7 @@ Included in this delivery:
 - README and local setup instructions
 - Staff walkthrough
 - Handover and maintenance guidance
+- Invoice: `INVOICE.md`
 
 Please review every generated reply before sending it. ReplyWell creates a draft and does not send messages automatically.
 
