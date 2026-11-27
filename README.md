@@ -1,67 +1,138 @@
 # ReplyWell
 
-**Live URL:** https://replywell.onrender.com
+**Live app:** https://replywell.onrender.com
 
-ReplyWell helps small Nairobi businesses respond to customer complaints with care. Paste a complaint from a shop, courier, Airbnb, or restaurant customer and select **Generate reply** to get a professional draft that acknowledges the issue and suggests a clear next step. It avoids blame and unsupported promises. Review and personalize the draft before sending.
+ReplyWell is an AI-assisted customer reply draft tool for small businesses in Nairobi, Kenya. Staff paste a customer complaint, generate a calm and professional reply, review it, personalize it, and copy it for use in their support channel.
 
-Complaint text is sent to Anthropic for drafting; avoid entering payment details or other sensitive information.
+The app sends complaint text to Anthropic for drafting. Do not enter payment details, passwords, or other sensitive customer information.
 
-# Project Brief
+## Project package
 
-**Project:** ReplyWell — AI Customer Reply Assistant  
-**Client:** Small businesses in Nairobi, Kenya  
-**Problem:** Staff struggle to write quick, calm, and professional responses to customer complaints.  
-**Solution:** A Python Flask app that lets users paste a complaint and receive an AI-generated reply draft for review and sending.  
-**Deliverables:** Working web app, Anthropic API setup instructions, one-page user guide, and handover guidance  
-**Timeline:** 5 days: Day 1 (setup), Day 2 (UI), Day 3 (AI integration), Day 4 (testing), Day 5 (deployment)  
-**Price:** KES 25,000 one-time build + KES 2,000/month support
+- **Product:** ReplyWell AI Customer Reply Assistant
+- **Target users:** Shops, couriers, Airbnb hosts, restaurants, and other small businesses
+- **Core stack:** Python, Flask, Gunicorn, Anthropic Messages API
+- **Source entry point:** `Day20_exercise.py`
+- **Automated tests:** `test_app.py`
+- **Deployment template:** `render.yaml`
+- **User walkthrough:** `WALKTHROUGH.md`
+- **Client handoff message:** `DELIVERY_MESSAGE.md`
 
-## What was built
+## Features
 
-ReplyWell is a Flask app that validates complaint submissions and uses Anthropic to generate a concise, professional reply draft. It logs request and provider outcomes without logging complaint text, and retries transient provider failures up to three times.
+- 4,000-character complaint limit
+- Required-field and JSON payload validation
+- AI-generated drafts that acknowledge the issue and suggest a clear next step
+- Provider retry handling for transient network and HTTP failures
+- Clear service and network error messages
+- Clipboard copy for the generated draft
+- Request and provider logging without logging complaint text
+
+## Project structure
+
+```text
+Day20_exercise.py  Flask application and Anthropic integration
+templates/         HTML page template
+static/app.js      Form, loading, error, and clipboard behavior
+static/style.css   Responsive interface styles
+test_app.py        Flask and provider behavior tests
+render.yaml        Render Blueprint deployment configuration
+requirements.txt   Python dependencies
+README.md          Project and setup documentation
+WALKTHROUGH.md     One-page staff usage guide
+DELIVERY_MESSAGE.md Ready-to-send delivery handoff
+```
 
 ## Run locally
 
-1. Install dependencies with `python -m pip install -r requirements.txt`.
-2. Set `ANTHROPIC_API_KEY` in your local `.env` file. Never commit the key.
-3. Run `python Day20_exercise.py` and open `http://localhost:5000`.
+### Prerequisites
 
-## Offline use
+- Python 3.12 or later
+- An Anthropic API key
+- Internet access for reply generation
 
-The Flask app and its local page can start without internet once the Python dependencies are installed. Generating a reply does require internet access and a valid `ANTHROPIC_API_KEY`, because complaints are sent to Anthropic's hosted API. Without a connection, reply generation will fail. Google Fonts also loads from the internet; if unavailable, the page uses the browser's fallback fonts. The deployed Render app likewise requires network access.
+### Setup
 
-## Copying the reply
+From the project directory:
 
-The app can copy the generated reply to the clipboard, but it does not copy it automatically after generation. Select **Copy reply** below the draft; the browser will copy the text when clipboard access is allowed. The button briefly changes to **Copied!** after a successful copy.
+```powershell
+python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
+python -m pip install -r requirements.txt
+```
 
+Create a `.env` file in the project root:
 
+```dotenv
+ANTHROPIC_API_KEY=your_key_here
+```
 
-Run the automated test suite with:
+Then start the app:
 
-```shell
+```powershell
+python Day20_exercise.py
+```
+
+Open http://localhost:5000.
+
+The optional `ANTHROPIC_MODEL` variable overrides the default model. `LOG_LEVEL` may be used to control application log verbosity.
+
+**Security:** Never commit `.env`, API keys, or customer-sensitive information. The repository `.gitignore` should keep local secret files out of version control.
+
+## Test
+
+Run the automated suite:
+
+```powershell
 python -m unittest -v test_app.py
 ```
 
-The Flask tests cover homepage rendering; valid and invalid complaint submissions; empty, malformed, and non-JSON input; complaint size boundaries (4,000 characters and the HTTP body limit); missing API configuration; malformed or empty provider responses; successful text extraction; and retry behavior for transient network and HTTP errors. Provider calls are mocked, so the suite does not require an API key or contact Anthropic.
+The suite covers homepage rendering, complaint validation, 4,000-character and HTTP body limits, malformed requests, missing API configuration, provider response parsing, retries, and permanent provider failures. Provider calls are mocked, so tests do not require an API key or contact Anthropic.
 
-A browser smoke check was also performed with mocked `/api/reply` responses. It exercised required-field and character-limit handling, successful generation, service and network errors, malformed API responses, and clipboard success and failure.
+### Browser smoke checks
+
+The current release was also checked with mocked `/api/reply` responses for:
+
+- Required-field and character-limit handling
+- Successful reply generation
+- Service and network errors
+- Malformed API responses
+- Clipboard success and fallback behavior
+
+## Offline behavior
+
+Once Python dependencies are installed, the Flask page can load without internet access. Reply generation requires a live Anthropic API connection and a valid key. The deployed service has the same requirement. Google Fonts are optional; the interface falls back to local browser fonts when unavailable.
+
+## Using the app
+
+1. Open the app.
+2. Paste the customer's complaint.
+3. Select **Generate reply**.
+4. Review and personalize the draft.
+5. Select **Copy reply** and paste it into the business support channel.
+
+The app does not automatically send messages or copy drafts. It provides a draft for staff review.
 
 ## Deploy to Render
 
-This project includes a `render.yaml` Blueprint. Connect the Git repository to Render, create the Blueprint service, and provide `ANTHROPIC_API_KEY` in the Render dashboard. Render will display the public service URL after deployment.
+1. Push the repository to GitHub.
+2. In Render, create a Blueprint service from `render.yaml`.
+3. Set `ANTHROPIC_API_KEY` in the Render environment settings.
+4. Optionally set `ANTHROPIC_MODEL` or `LOG_LEVEL`.
+5. Deploy and open the generated public URL.
 
-## Branded version pricing
+The Blueprint uses Gunicorn and the `/` homepage for the health check. Render may take extra time to start the free-tier service after inactivity.
 
-I would charge **KES 25,000** as a one-time setup for a branded version for one business, including its logo and colors, tailored response tone, deployment, and handover. Ongoing AI usage would be billed separately at cost.
+## Handover and maintenance
 
-## Mid-project client update
+- Keep the Anthropic key in the hosting provider's secret environment settings.
+- Rotate the key immediately if it is exposed.
+- Review and personalize every generated response before sending it.
+- Monitor Render logs and Anthropic usage/billing.
+- Restrict use to approved business and customer-support purposes.
+- Do not add payment-card, password, or identity-document data to the complaint field.
 
-Hello [Client name],
+## Branded version scope and price
 
-Quick update: the core ReplyWell reply-generation feature is working correctly, including complaint validation and provider error handling. The tests pass, and I confirmed that the homepage and reply endpoint are responding correctly.
+A branded version for one business can include the business logo and colors, tailored response tone, deployment, staff handover, and a one-page usage guide.
 
-Working on final polish and deployment today. On track to deliver by Friday as planned.
-
-One question: should the app be delivered under the ReplyWell name, or would you like a version branded for your business?
-
-[Your name]
+Reference price: **KES 25,000 one-time**, with ongoing Anthropic usage billed separately at provider cost. A recurring support arrangement may be agreed separately.
