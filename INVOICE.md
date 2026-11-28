@@ -1,36 +1,28 @@
 # INVOICE
 
-**Invoice number:** [RW-YYYY-NNN]
+**Invoice number:** #005
 
-**Invoice date:** [DD/MM/YYYY]
+**Invoice date:** [27/11/2026]
 
-**Payment due:** [DD/MM/YYYY]
+**Payment due:** [29/11/2026]
 
 ---
 
 ## From
 
-[Your name or business name]
+[MELKZADECK ANINDO]
 
-[Postal address]
+[+254797402770]
 
-[Phone number]
+[zedeckanindo@gmail.com]
 
-[Email address]
-
-[Tax/VAT or PIN number, if applicable]
 
 ## Bill to
 
-[Client name or business name]
+[WASAFI AIRBNB COMPANY]
 
-[Client address]
+[+254747528732]
 
-[Client phone number]
-
-[Client email address]
-
-[Client tax/VAT or PIN number, if applicable]
 
 ---
 
@@ -48,13 +40,13 @@
 
 ## Payment details
 
-[Bank or M-Pesa payment details]
+[Bank payment details]
 
-[Payment account name]
+[Paybill-542542]
 
-[Account or reference number]
+[Account Number-951850]
 
-Use invoice number **[RW-YYYY-NNN]** as the payment reference.
+Use invoice number **#005** as the payment reference.
 
 ## Scope included
 
@@ -67,7 +59,7 @@ Use invoice number **[RW-YYYY-NNN]** as the payment reference.
 
 ## Terms
 
-- Payment is due by [DD/MM/YYYY].
+- Payment is due by [29/11/2026.
 - Ongoing Anthropic API usage is billed separately at provider cost unless otherwise agreed.
 - Recurring support or branded customisation is not included in this invoice unless listed separately.
 - This invoice does not include a permanent copy of the API key or third-party account balances.
