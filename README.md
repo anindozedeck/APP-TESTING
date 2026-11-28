@@ -17,6 +17,8 @@ The app sends complaint text to Anthropic for drafting. Do not enter payment det
 - **User walkthrough:** `WALKTHROUGH.md`
 - **Client handoff message:** `DELIVERY_MESSAGE.md`
 - **Invoice template:** `INVOICE.md`
+- **Feedback log:** `FEEDBACK.md`
+- **Project retrospective:** `RETROSPECTIVE.md`
 
 ## Features
 
